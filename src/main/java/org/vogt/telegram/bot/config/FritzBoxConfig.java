@@ -41,4 +41,11 @@ public class FritzBoxConfig {
         return url;
     }
 
+    public String getWifiName() {
+        _loadIni();
+        String name = _ini.get("FritzBox", "wifiName", String.class);
+
+        return name;
+    }
+
 }

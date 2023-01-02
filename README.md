@@ -19,6 +19,7 @@ authorizedUsers=123,789,456
 
 [FritzBox]
 url=http://192.168.178.1
+wifiName=PrettyFlyForAWiFi
 user=admin
 pass=12345
 ```

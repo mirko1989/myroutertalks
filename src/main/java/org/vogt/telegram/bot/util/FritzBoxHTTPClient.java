@@ -30,6 +30,7 @@ public class FritzBoxHTTPClient {
     private String _base;
     private String _login = "/login_sid.lua";
     private String _command = "/data.lua";
+    private String _wifiName;
     private String _user;
     private String _pw;
 
@@ -43,8 +44,8 @@ public class FritzBoxHTTPClient {
         int active = on ? 1 : 0;
 
         return "sid=" + sid +
-                "&ssid=PrettyFlyForAWiFi&apActive=" + active + // 2.4 GHz
-                "&ssidScnd=PrettyFlyForAWiFi&apActiveScnd=" + active + // 5 GHz
+                "&ssid=" + _wifiName + "&apActive=" + active + // 2.4 GHz
+                "&ssidScnd=" + _wifiName + "&apActiveScnd=" + active + // 5 GHz
                 "&apply=&page=wSet";
     }
 
@@ -68,7 +69,7 @@ public class FritzBoxHTTPClient {
     }
 
     private boolean _isInitialized() {
-        return _base != null && _user != null && _pw != null;
+        return _base != null && _user != null && _pw != null && _wifiName != null;
     }
 
     private void _init() {
@@ -76,6 +77,7 @@ public class FritzBoxHTTPClient {
         this._base = conf.getUrl();
         this._login = _base + _login;
         this._command = _base + _command;
+        this._wifiName = conf.getWifiName();
         this._user = conf.getUser();
         this._pw = conf.getPass();
     }
