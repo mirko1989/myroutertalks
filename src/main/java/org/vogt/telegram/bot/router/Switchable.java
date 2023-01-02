@@ -1,4 +1,4 @@
-package org.vogt.telegram.bot.util;
+package org.vogt.telegram.bot.router;
 
 public interface Switchable {
 

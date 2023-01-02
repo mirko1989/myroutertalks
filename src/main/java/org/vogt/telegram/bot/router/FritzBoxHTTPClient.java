@@ -1,4 +1,4 @@
-package org.vogt.telegram.bot.util;
+package org.vogt.telegram.bot.router;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-public class FritzBoxHTTPClient {
+public class FritzBoxHTTPClient implements RouterClient {
 
     private String _base;
     private String _login = "/login_sid.lua";

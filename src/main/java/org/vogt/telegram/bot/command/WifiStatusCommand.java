@@ -4,8 +4,8 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.vogt.telegram.bot.message.Sendable;
 import org.vogt.telegram.bot.message.Text;
-import org.vogt.telegram.bot.util.FritzBoxHTTPClient;
-import org.vogt.telegram.bot.util.FritzBoxWifi;
+import org.vogt.telegram.bot.router.FritzBoxHTTPClient;
+import org.vogt.telegram.bot.router.Wifi;
 
 public class WifiStatusCommand implements TelegramCommand {
 
@@ -17,7 +17,7 @@ public class WifiStatusCommand implements TelegramCommand {
 
     @Override
     public void execute(TelegramLongPollingBot bot) {
-        FritzBoxWifi wifi = new FritzBoxWifi(new FritzBoxHTTPClient());
+        Wifi wifi = new Wifi(new FritzBoxHTTPClient());
         String status = "WiFi is " + (wifi.isOn() ? "ON" : "OFF");
         Sendable text = new Text(bot, _msg, status);
         text.send();

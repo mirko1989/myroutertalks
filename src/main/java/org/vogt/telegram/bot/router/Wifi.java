@@ -1,10 +1,10 @@
-package org.vogt.telegram.bot.util;
+package org.vogt.telegram.bot.router;
 
-public class FritzBoxWifi implements Switchable {
+public class Wifi implements Switchable {
 
-    private FritzBoxHTTPClient _client;
+    private RouterClient _client;
 
-    public FritzBoxWifi(FritzBoxHTTPClient client) {
+    public Wifi(RouterClient client) {
         this._client = client;
     }
 
