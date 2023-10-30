@@ -15,7 +15,7 @@ public class TokenTest {
         String challenge = "abc12x";
         String pass = "password";
         String token = Token.getFor(challenge, pass);
-        String expected = "";
+        String expected = "530475d4e11b570129e23ed66a329fc5";
 
         assertEquals(expected, token);
     }
