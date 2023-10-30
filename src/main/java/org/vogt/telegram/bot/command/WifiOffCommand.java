@@ -8,10 +8,8 @@ import org.vogt.telegram.bot.router.Wifi;
 
 public class WifiOffCommand implements TelegramCommand {
 
-    private Message _msg;
-
     public WifiOffCommand(Message msg) {
-        this._msg = msg;
+
     }
 
     @Override
@@ -19,5 +17,5 @@ public class WifiOffCommand implements TelegramCommand {
         Wifi wifi = new Wifi(new FritzBoxHTTPClient(new FritzBoxConfig()));
         wifi.off();
     }
-    
+
 }

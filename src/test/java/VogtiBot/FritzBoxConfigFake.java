@@ -1,3 +1,5 @@
+package VogtiBot;
+
 import org.vogt.telegram.bot.config.FritzBoxConfig;
 
 public class FritzBoxConfigFake extends FritzBoxConfig {
