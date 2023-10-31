@@ -2,23 +2,23 @@ package org.vogt.telegram.bot.router;
 
 public class Wifi implements Switchable {
 
-    private RouterClient _client;
+    private RouterClient client;
 
     public Wifi(RouterClient client) {
-        this._client = client;
+        this.client = client;
     }
 
     public void on() {
-        _client.enableWifi();
+        client.wifiOn();
     }
 
     public void off() {
-        _client.disableWifi();
+        client.wifiOff();
     }
 
     @Override
     public boolean isOn() {
-        return _client.isWifiOn();
+        return client.isWifiOn();
     }
 
 }

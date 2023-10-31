@@ -2,9 +2,9 @@ package org.vogt.telegram.bot.router;
 
 public interface RouterClient {
 
-    public void enableWifi();
+    public void wifiOn();
 
-    public void disableWifi();
+    public void wifiOff();
 
     public boolean isWifiOn();
 

@@ -1,15 +1,22 @@
 package org.vogt.telegram.bot.command;
 
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.vogt.telegram.bot.config.BotConfig;
 import org.vogt.telegram.bot.util.Authorizer;
 
 public class TelegramCommandFactory {
 
-    public static TelegramCommand createFromMsg(Message msg) {
-        TelegramCommand cmd;
-        Authorizer auth = new Authorizer(msg);
+    private BotConfig config;
 
-        if (!auth.isValid()) {
+    public TelegramCommandFactory(BotConfig config) {
+        this.config = config;
+    }
+
+    public TelegramCommand createFromMsg(Message msg) {
+        TelegramCommand cmd;
+        Authorizer auth = new Authorizer(config);
+
+        if (!auth.isValid(msg)) {
             cmd = new UnauthorizedCommand(msg);
             return cmd;
         }
