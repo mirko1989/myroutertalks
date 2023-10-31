@@ -16,7 +16,11 @@ import org.xml.sax.SAXException;
 public class XMLUtil {
 
     public static String parseChallenge(String xml) {
-        String challenge = "";
+        return getNodeText(xml, "Challenge");
+    }
+
+    private static String getNodeText(String xml, String nodeName) {
+        String text = "";
 
         try {
             Document doc = loadXMLFromString(xml);
@@ -25,15 +29,15 @@ public class XMLUtil {
             for (int i = 0; i < list.getLength(); i++) {
                 Element elem = (Element) list.item(i);
 
-                if (elem.getNodeName().equals("Challenge")) {
-                    challenge = elem.getTextContent();
+                if (elem.getNodeName().equals(nodeName)) {
+                    text = elem.getTextContent();
                 }
             }
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
 
-        return challenge;
+        return text;
     }
 
     private static Document loadXMLFromString(String xml)
@@ -47,24 +51,7 @@ public class XMLUtil {
     }
 
     public static String parseSid(String xml) {
-        String sid = "";
-
-        try {
-            Document doc = loadXMLFromString(xml);
-            NodeList list = doc.getDocumentElement().getChildNodes();
-
-            for (int i = 0; i < list.getLength(); i++) {
-                Element elem = (Element) list.item(i);
-
-                if (elem.getNodeName().equals("SID")) {
-                    sid = elem.getTextContent();
-                }
-            }
-        } catch (SAXException | IOException | ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-
-        return sid;
+        return getNodeText(xml, "SID");
     }
 
 }

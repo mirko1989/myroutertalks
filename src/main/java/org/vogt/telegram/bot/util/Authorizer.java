@@ -7,15 +7,14 @@ import org.vogt.telegram.bot.config.BotConfig;
 
 public class Authorizer {
 
-    private Message _msg;
+    private BotConfig config;
 
-    public Authorizer(Message msg) {
-        this._msg = msg;
+    public Authorizer(BotConfig config) {
+        this.config = config;
     }
 
-    public boolean isValid() {
-        long user = _msg.getFrom().getId();
-        BotConfig config = new BotConfig();
+    public boolean isValid(Message msg) {
+        long user = msg.getFrom().getId();
         List<Long> allowedUsers = config.getAllowedUsers();
 
         return allowedUsers.contains(user);

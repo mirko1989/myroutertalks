@@ -9,34 +9,35 @@ import org.vogt.telegram.bot.config.BotConfig;
 
 public class MyBot extends TelegramLongPollingBot {
 
+	private BotConfig config;
+
+	public MyBot(BotConfig config) {
+		this.config = config;
+	}
+
 	@Override
 	public String getBotUsername() {
-		BotConfig conf = new BotConfig();
-		String name = conf.getName();
-
-		return name;
+		return config.getName();
 	}
 
 	@Override
 	public String getBotToken() {
-		BotConfig conf = new BotConfig();
-		String token = conf.getToken();
-
-		return token;
+		return config.getToken();
 	}
 
 	@Override
 	public void onUpdateReceived(Update update) {
 		Message msg = update.getMessage();
-		_logMessage(msg);
+		logMessage(msg);
 
 		if (msg.isCommand()) {
-			TelegramCommand cmd = TelegramCommandFactory.createFromMsg(msg);
+			TelegramCommandFactory factory = new TelegramCommandFactory(config);
+			TelegramCommand cmd = factory.createFromMsg(msg);
 			cmd.execute(this);
 		}
 	}
 
-	private void _logMessage(Message msg) {
+	private void logMessage(Message msg) {
 		String firstName = msg.getFrom().getFirstName();
 		String text = msg.getText();
 

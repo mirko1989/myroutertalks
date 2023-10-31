@@ -12,7 +12,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 public class HTTPClient {
 
     public static String post(String url, String payload) {
-        String responseBody = "";
+        String responseBody;
 
         try {
             HttpRequest request = HttpRequest.newBuilder()
@@ -24,7 +24,7 @@ public class HTTPClient {
             HttpResponse<String> response = http.send(request, BodyHandlers.ofString());
             responseBody = response.body();
         } catch (URISyntaxException | IOException | InterruptedException e) {
-            e.printStackTrace();
+            responseBody = "";
         }
 
         return responseBody;

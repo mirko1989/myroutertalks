@@ -10,7 +10,8 @@ public class FritzBoxHTTPClient implements RouterClient {
         this.config = config;
     }
 
-    public void enableWifi() {
+    @Override
+    public void wifiOn() {
         String payload = wifiPayload(true);
         HTTPClient.post(commandUrl(), payload);
     }
@@ -29,11 +30,13 @@ public class FritzBoxHTTPClient implements RouterClient {
                 "&apply=&page=wSet";
     }
 
-    public void disableWifi() {
+    @Override
+    public void wifiOff() {
         String payload = wifiPayload(false);
         HTTPClient.post(commandUrl(), payload);
     }
 
+    @Override
     public boolean isWifiOn() {
         String sid = FritzBoxSid.getFor(config);
         String payload = "sid=" + sid + "&page=wSet";
