@@ -6,6 +6,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.vogt.telegram.bot.command.TelegramCommand;
 import org.vogt.telegram.bot.command.TelegramCommandFactory;
 import org.vogt.telegram.bot.config.BotConfig;
+import org.vogt.telegram.bot.logger.CommandLogger;
+import org.vogt.telegram.bot.logger.Log;
 
 public class MyBot extends TelegramLongPollingBot {
 
@@ -28,20 +30,14 @@ public class MyBot extends TelegramLongPollingBot {
 	@Override
 	public void onUpdateReceived(Update update) {
 		Message msg = update.getMessage();
-		logMessage(msg);
+		Log logger = new CommandLogger();
+		logger.info(msg);
 
 		if (msg.isCommand()) {
 			TelegramCommandFactory factory = new TelegramCommandFactory(config);
 			TelegramCommand cmd = factory.createFromMsg(msg);
 			cmd.execute(this);
 		}
-	}
-
-	private void logMessage(Message msg) {
-		String firstName = msg.getFrom().getFirstName();
-		String text = msg.getText();
-
-		System.out.println(String.format("%s says %s", firstName, text));
 	}
 
 }

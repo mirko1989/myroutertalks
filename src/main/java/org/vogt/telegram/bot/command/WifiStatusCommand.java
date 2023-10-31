@@ -10,17 +10,17 @@ import org.vogt.telegram.bot.router.Wifi;
 
 public class WifiStatusCommand implements TelegramCommand {
 
-    private Message _msg;
+    private Message msg;
 
     public WifiStatusCommand(Message msg) {
-        this._msg = msg;
+        this.msg = msg;
     }
 
     @Override
     public void execute(TelegramLongPollingBot bot) {
         Wifi wifi = new Wifi(new FritzBoxHTTPClient(new FritzBoxConfig()));
         String status = "WiFi is " + (wifi.isOn() ? "ON" : "OFF");
-        Sendable text = new Text(bot, _msg, status);
+        Sendable text = new Text(bot, msg, status);
         text.send();
     }
 

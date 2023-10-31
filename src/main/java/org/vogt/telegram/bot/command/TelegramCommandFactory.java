@@ -2,7 +2,6 @@ package org.vogt.telegram.bot.command;
 
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.vogt.telegram.bot.config.BotConfig;
-import org.vogt.telegram.bot.util.Authorizer;
 
 public class TelegramCommandFactory {
 
