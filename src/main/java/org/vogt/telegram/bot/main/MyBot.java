@@ -3,6 +3,7 @@ package org.vogt.telegram.bot.main;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.vogt.telegram.bot.command.Authorizer;
 import org.vogt.telegram.bot.command.TelegramCommand;
 import org.vogt.telegram.bot.command.TelegramCommandFactory;
 import org.vogt.telegram.bot.config.BotConfig;
@@ -34,7 +35,7 @@ public class MyBot extends TelegramLongPollingBot {
 		logger.info(msg);
 
 		if (msg.isCommand()) {
-			TelegramCommandFactory factory = new TelegramCommandFactory(config);
+			TelegramCommandFactory factory = new TelegramCommandFactory(new Authorizer(config));
 			TelegramCommand cmd = factory.createFromMsg(msg);
 			cmd.execute(this);
 		}
